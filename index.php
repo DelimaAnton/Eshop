@@ -1,3 +1,9 @@
+<?php
+
+require "connection.php";
+
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -84,10 +90,25 @@
                                 <label class="form-label">Gender</label>
                                 <select class="form-control" id="gender">
 
+                                    <?php
                                     
+                                    $rs = Database::search("SELECT * FROM `gender`");
+                                    $num = $rs->num_rows;
 
-                                        <option value="1">Male</option>
-                                        <option value="2">Female</option>
+                                    for($x=0; $x<$num; $x++){
+                                        $data = $rs->fetch_assoc();
+                                        ?>
+                                            <option value="<?php echo $data["genderid"]; ?>">
+                                                <?php echo $data["gender_name"]; ?>
+                                            </option>
+
+                                        <?php
+                                    }
+                                    
+                                    ?>
+
+                                        
+                                        
 
                                     
                                 </select>
@@ -98,7 +119,7 @@
                             </div>
 
                             <div class="col-12 col-lg-6 d-grid">
-                                <button class="btn btn-dark">Already have an account? Sign In</button>
+                                <button class="btn btn-dark" onclick="changeView()">Already have an account? Sign In</button>
                             </div>
 
                         </div>
@@ -135,7 +156,7 @@
                                 <button class="btn btn-primary">Sign In</button>
                             </div>
                             <div class="col-12 col-lg-6 d-grid">
-                                <button class="btn btn-danger">New to eShop? Join Now</button>
+                                <button class="btn btn-danger" onclick="changeView()">New to eShop? Join Now</button>
                             </div>
                         </div>
                     </div>
