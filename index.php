@@ -91,31 +91,31 @@ require "connection.php";
                                 <select class="form-control" id="gender">
 
                                     <?php
-                                    
+
                                     $rs = Database::search("SELECT * FROM `gender`");
                                     $num = $rs->num_rows;
 
-                                    for($x=0; $x<$num; $x++){
+                                    for ($x = 0; $x < $num; $x++) {
                                         $data = $rs->fetch_assoc();
-                                        ?>
-                                            <option value="<?php echo $data["genderid"]; ?>">
-                                                <?php echo $data["gender_name"]; ?>
-                                            </option>
+                                    ?>
+                                        <option value="<?php echo $data["genderid"]; ?>">
+                                            <?php echo $data["gender_name"]; ?>
+                                        </option>
 
-                                        <?php
+                                    <?php
                                     }
-                                    
+
                                     ?>
 
-                                        
-                                        
 
-                                    
+
+
+
                                 </select>
                             </div>
 
                             <div class="col-12 col-lg-6 d-grid">
-                                <button class="btn btn-primary">Sign Up</button>
+                                <button class="btn btn-primary" onclick="signup();">Sign Up</button>
                             </div>
 
                             <div class="col-12 col-lg-6 d-grid">
@@ -150,10 +150,10 @@ require "connection.php";
                                 </div>
                             </div>
                             <div class="col-6 text-end">
-                                <a href="#" class="link-primary">Forgot Password?</a>
+                                <a href="#" class="link-primary" onclick="forgotPassword()">Forgot Password?</a>
                             </div>
                             <div class="col-12 col-lg-6 d-grid">
-                                <button class="btn btn-primary">Sign In</button>
+                                <button class="btn btn-primary" onclick="signin();">Sign In</button>
                             </div>
                             <div class="col-12 col-lg-6 d-grid">
                                 <button class="btn btn-danger" onclick="changeView()">New to eShop? Join Now</button>
@@ -167,6 +167,57 @@ require "connection.php";
             </div>
 
             <!-- content -->
+
+            <!-- modal -->
+
+            <div class="modal" tabindex="-1" id="fpmodal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Forgot Password</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="row g-3">
+
+                                <div class="col-6">
+
+                                    <label class="form-label">New Password</label>
+                                    <div class="input-group mb-3">
+                                        <input type="password" class="form-control">
+                                        <button class="btn btn-outline-secondary" type="button">Show</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-6">
+
+                                    <label class="form-label">Re-type Password</label>
+                                    <div class="input-group mb-3">
+                                        <input type="password" class="form-control">
+                                        <button class="btn btn-outline-secondary" type="button">Show</button>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="form-label">Verification Code</label>
+                                    <input type="text" type="form-control"/>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- modal -->
 
             <!-- footer -->
             <div class="col-12 fixed-bottom d-none d-lg-block">
